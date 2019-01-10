@@ -1,0 +1,60 @@
+import java.util.Stack;
+public class BinaryTree{
+    Node root;
+    
+    private class Node{
+        int data;
+        Node left, right;
+        
+        Node(int data){
+            this.data = data;
+        }
+    }
+    
+    public void createBinaryTree(){
+        Node first = new Node(1);
+        Node second = new Node(2);
+        Node three = new Node(3);
+        Node four = new Node(4);
+        Node five = new Node(5);
+        Node six = new Node(6);
+        Node seven = new Node(7);
+        
+        root = first;
+        first.left = second;
+        first.right = three;
+        second.left = four;
+        second.right = five;
+        three.left = six;
+        three.right = seven;
+        
+    }
+    
+    static void preOrder(Node root){
+        if(root==null){
+            return;
+        }
+        
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        
+        while(!stack.isEmpty()){
+            Node temp = stack.pop();
+            System.out.print(temp.data+" ");
+            
+            if(temp.right != null){
+                stack.push(temp.right);
+            }
+            
+            if(temp.left != null){
+                stack.push(temp.left);
+            }
+        }
+    }
+    
+    public static void main(String[] args){
+        BinaryTree tree = new BinaryTree();
+        tree.createBinaryTree();
+        tree.preOrder(tree.root);
+    }
+}
